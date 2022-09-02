@@ -17,7 +17,7 @@ contract MyToken is ERC721, ERC721Enumerable, ERC2981, Pausable, Ownable {
     /**
     * @dev Paramaters provided for deployment
     */
-    uint256 venueSize;
+    uint256 public venueSize;
     uint public mintRate;
     /* string public contractURI; */
 
