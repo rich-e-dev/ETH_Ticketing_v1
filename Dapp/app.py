@@ -9,6 +9,7 @@ from ticketInfo import TicketInfo
 # Call Contract
 @st.experimental_singleton
 def start():
+    load_dotenv('dapp.env')
     # Get provider url from Ganache
     ganache_provider = Web3.HTTPProvider(os.environ["PROVIDER_URL"])
     w3 = Web3(ganache_provider)
