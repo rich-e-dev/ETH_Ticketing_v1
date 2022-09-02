@@ -19,7 +19,7 @@ contract MyToken is ERC721, ERC721Enumerable, ERC2981, Pausable, Ownable {
     */
     uint256 public venueSize;
     uint public mintRate;
-    /* string public contractURI; */
+
 
 
    /**
@@ -27,14 +27,12 @@ contract MyToken is ERC721, ERC721Enumerable, ERC2981, Pausable, Ownable {
     */
     constructor(
         uint96 _royaltyFeesInBips,
-        /* string memory _contractURI,*/
         string memory _eventName,
         string memory _ticketSymbol,
         uint256 _venueSize,
         uint256 _mintRate
     ) ERC721(_eventName, _ticketSymbol) {
         setRoyaltyInfo(owner(), _royaltyFeesInBips);
-        /*contractURI = _contractURI;*/
         venueSize = _venueSize;
         mintRate = (_mintRate * 1 ether);
     }
@@ -83,7 +81,6 @@ contract MyToken is ERC721, ERC721Enumerable, ERC2981, Pausable, Ownable {
     */
 
    
-   
     
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
@@ -109,9 +106,5 @@ contract MyToken is ERC721, ERC721Enumerable, ERC2981, Pausable, Ownable {
         _setDefaultRoyalty(_receiver, _royaltyFeesInBips);
     }
 
-    /*function setContractURI(string calldata _contractURI) public onlyOwner {
-        contractURI = _contractURI;
-    }*/
     
 }
-
