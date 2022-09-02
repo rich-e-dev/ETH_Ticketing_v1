@@ -22,3 +22,7 @@ class TicketInfo:
     # Mint new tickets
     def mint(self, amount, tx):
         self.ticket_contract.functions.safeMint(to=self.adr, _amount=amount).transact(tx)
+
+    # Displays current address balance
+    def balance_of(self):
+        return self.ticket_contract.functions.balanceOf(owner=self.adr).call()
