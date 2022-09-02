@@ -9,6 +9,7 @@ from ticketInfo import TicketInfo
 # Call Contract
 @st.experimental_singleton
 def start():
+    load_dotenv("dapp.env")
     # Get provider url from Ganache
     ganache_provider = Web3.HTTPProvider(os.environ["PROVIDER_URL"])
     w3 = Web3(ganache_provider)
@@ -19,7 +20,7 @@ def start():
         abi_json = json.load(f)
 
     # Create the ticket contract with deployed address and abi_json
-    ticket_contract = w3.eth.contract(address=os.environ["CONTRACT_ADDRESS"], abi=abi_json)
+    ticket_contract = w3.eth.contract(os.environ["CONTRACT_ADDRESS"], abi=abi_json)
     return w3, ticket_contract
 
 # Call Start
@@ -58,3 +59,7 @@ if st.button("buy ticket") and ticket_info.valid_address():
 # Display error if contract is not valid
 elif not ticket_info.valid_address():
     st.error("Enter a valid address")
+
+# Displays current address balance
+if st.button("View Ticket Balance") and ticket_info.valid_address():
+    st.write(f"You have {ticket_info.balance_of()} tickets.")
